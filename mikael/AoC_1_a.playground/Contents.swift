@@ -25,6 +25,28 @@ struct Calculator {
             return 0
         }.reduce(0, {$0 + $1})
     }
+    
+    func calculate2() -> Int {
+        let offset = input.count / 2
+        var prev = input.first!
+        return input.enumerated().map { (index, element) -> Int in
+            
+            var indexWithOffset = index + offset
+            if indexWithOffset == input.count { indexWithOffset = 0 }
+            print(input[indexWithOffset])
+            
+            if index == 0 && input.first! == input.last! {
+                return input.first!
+            }
+            
+            if prev == input[indexWithOffset] {
+                if index == 0 { return 0 }
+                return input[indexWithOffset]
+            }
+            prev = input[indexWithOffset]
+            return 0
+            }.reduce(0, {$0 + $1})
+    }
 }
 
 struct Input {
@@ -41,52 +63,96 @@ struct Input {
 
 struct Day1 {
     
-    func problem() -> Int {
+    func problem1() -> Int {
         let input = Input()
         let calculator = Calculator(input: input.intData(), isHalf: false)
         return calculator.calculate()
+    }
+    
+    func problem2() -> Int {
+        let input = Input()
+        let calculator = Calculator(input: input.intData(), isHalf: false)
+        return calculator.calculate2()
     }
 }
 
 
 class MyTests:XCTestCase {
-    func testExample1() {
-        let sut = Calculator(input: [1,1,2,2], isHalf: false)
-        let expected = 3
+//    func testExample1() {
+//        let sut = Calculator(input: [1,1,2,2], isHalf: false)
+//        let expected = 3
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
+//
+//    func testExample2() {
+//        let sut = Calculator(input: [1,1,1,1], isHalf: false)
+//        let expected = 4
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
+//
+//    func testExample3() {
+//        let sut = Calculator(input: [1,2,3,4], isHalf: false)
+//        let expected = 0
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
+//
+//    func testExample4() {
+//        let sut = Calculator(input: [9,1,2,1,2,1,2,9], isHalf: false)
+//        let expected = 9
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
+    
+//    func testExample1b() {
+//        let sut = Calculator(input: [1,2,1,2], isHalf: false)
+//        let expected = 6
+//
+//        let result = sut.calculate2()
+//        XCTAssertEqual(result, expected)
+//    }
 
-        let result = sut.calculate()
+//    func testExample2b() {
+//        let sut = Calculator(input: [1,2,2,1], isHalf: false)
+//        let expected = 0
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
+//
+//    func testExample3b() {
+//        let sut = Calculator(input: [1,2,3,4,2,5], isHalf: false)
+//        let expected = 4
+//
+//        let result = sut.calculate2()
+//        XCTAssertEqual(result, expected)
+//    }
+//
+    func testExample4b() {
+        let sut = Calculator(input: [1,2,3,1,2,3], isHalf: false)
+        let expected = 12
+
+        let result = sut.calculate2()
         XCTAssertEqual(result, expected)
     }
-
-    func testExample2() {
-        let sut = Calculator(input: [1,1,1,1], isHalf: false)
-        let expected = 4
-
-        let result = sut.calculate()
-        XCTAssertEqual(result, expected)
-    }
-
-    func testExample3() {
-        let sut = Calculator(input: [1,2,3,4], isHalf: false)
-        let expected = 0
-
-        let result = sut.calculate()
-        XCTAssertEqual(result, expected)
-    }
-
-    func testExample4() {
-        let sut = Calculator(input: [9,1,2,1,2,1,2,9], isHalf: false)
-        let expected = 9
-
-        let result = sut.calculate()
-        XCTAssertEqual(result, expected)
-    }
-
+//    func testExample5b() {
+//        let sut = Calculator(input: [1,2,1,3,1,4,1,5], isHalf: false)
+//        let expected = 9
+//
+//        let result = sut.calculate()
+//        XCTAssertEqual(result, expected)
+//    }
 }
 
 MyTests.defaultTestSuite.run()
 
 
-let solution = Day1().problem()
-print(solution)
+//let solution = Day1().problem2()
+//print(solution)
 
